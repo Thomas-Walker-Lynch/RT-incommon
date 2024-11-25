@@ -1,0 +1,6 @@
+#!/bin/env bash
+script_afp=$(realpath "${BASH_SOURCE[0]}")
+
+# 2024-11-21 fits project skeleton convention
+echo v3.0
+

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+subu="$1"
+shell="${@:2}"
+
+# Basic error handling for subu name
+if [ -z "$subu" ]; then
+  echo "No subuser name supplied"
+  exit 1
+fi
+
+# Ensure the subu session is set up correctly
+xauth_output=$(xauth list)
+xkey=$(echo "$xauth_output" | head -1 | awk '{print $3}')
+
+if [ -z "$xkey" ]; then
+  echo "subu:: xauth key not found"
+  exit 1
+fi
+
+# Set up the display environment
+read -r -d '' script0 <<-EOF
+  export NO_AT_BRIDGE=1 \
+  ;touch .Xauthority \
+  ;xauth add "$DISPLAY" . "$xkey" \
+  ;export DISPLAY="$DISPLAY" \
+  ;eval \$(dbus-launch --sh-syntax) \
+  ;export DBUS_SESSION_BUS_ADDRESS \
+  ;export DBUS_SESSION_BUS_PID \
+  ;$shell
+EOF
+
+# Start the subuser session using machinectl without the '--' issue
+sudo machinectl shell $subu@ /bin/bash -c "$script0"

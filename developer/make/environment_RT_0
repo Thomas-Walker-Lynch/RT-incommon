@@ -1,0 +1,70 @@
+# makefile environment variable defaults.
+# include this in the local make file with a line such as:
+#
+#   RESOURCE:=$(REPO_HOME)/tool_shared/third_party/resource/release
+#   include $(RESOURCE)/make/environment_RT_0
+#
+# The Unix environment has traditionally combined linking and loading into one
+# program called `ld`, and the compiler conventionally also has a switch for
+# doing the linking. A programmer or user typically does not run the loader
+# explicitly, because the shall does this automatically. Consequently, the poor
+# linker has not been giving an explicit name, and no one thinks much about
+# loading.
+#
+# The ATT c compiler was called 'cc'.  However, today in makefiles 'CC' is often
+# used as the variable name for the C++ compiler.
+#
+# This all causes a bit of a problem when following the RT directory naming
+# convention, where, when practical, directories are named after the program
+# that will use the contained files.
+#
+# Here 'cc' is the directory containing files for cc, the C compiler.  The
+# directory 'linker' containers files for the unnamed linker, and, as loaders
+# are architecture specific, 'amd64' containers files for the architecture
+# 'amd64' loader. The variable CPP holds the name of the C++ compiler.
+
+
+SHELL=/bin/bash
+
+#--------------------------------------------------------------------------------
+# useful macros
+#
+
+# a single space literal, for example if you wanted to subsitute commas to
+# spaces: $(subst $(space),;,$(string))
+
+blank :=
+space :=$(blank)  $(blank)
+
+#--------------------------------------------------------------------------------
+# main directories 
+# 
+DOCDIR=document
+EXECDIR=amd64
+LIBDIR=linker
+SRCDIR=cc
+INCDIR=cc
+TESTDIR=test
+TMPDIR=scratchpad
+TRYDIR=experiment
+
+#--------------------------------------------------------------------------------
+# Programs make uses.  
+#
+ECHO= echo -e
+#ECHO= echo
+
+# program to use to compile C, or to compile C++
+C=
+CPP=
+
+#--------------------------------------------------------------------------------
+# local targets
+#
+DEPFILE=$(TMPDIR)/makefile-cc.deps
+LIBFILE=$(LIBDIR)/lib$(PROJECT).a
+
+# we no longer use separate include file, but instead gate the C file
+# INCFILE=$(SRCDIR)/$(PROJECT).h
+
+
