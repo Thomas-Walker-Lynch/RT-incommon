@@ -48,7 +48,7 @@ In addition a reader can read this document for some general principles.
 
 4. invocation inside of Emacs
 
-   The file found in the resource project, developer/emacs/emacs.el` holds a
+   The file found in the RT-incommon project, developer/release/emacs/jdbx.el` holds a
    definition for the `jdbx` command.  This command will read the SOURCEPATH
    from the environment and run jdb in Emacs.
 

@@ -1,17 +1,17 @@
-# /bin/make must be run from $REPO_HOME/developer
 
-RESOURCE:=$(REPO_HOME)/developer
-include $(RESOURCE)/make/environment_RT_0
+RT-INCOMMON:=$(REPO_HOME)/release
 
-# override defaults
-LIBDIR=scratchpad
+include $(RT-INCOMMON)/make/environment_RT_0
 
-# compiler to use
-C=gcc
-CFLAGS= -Werror -include "$(RESOURCE)/make/RT_0.h" -I$(INCDIR) 
-LINKFLAGS=-L$(LIBDIR) -L/usr/lib64 -L/usr/lib -l$(PROJECT)
+CFLAGS+=-Werror -include "$(RT-INCOMMON)/make/RT_0.h"
+LINKFLAGS+= -l$(PROJECT)
+LIBFILE=$(LIBDIR)/lib$(PROJECT).a
 
-# Import the rules. The dash prefix means to ignore include errors. This is
-# required because the DEPFILE might not exist yet.
-include $(RESOURCE)/make/targets
+include $(RT-INCOMMON)/make/targets
 -include $(DEPFILE)
+
+
+
+
+
+
