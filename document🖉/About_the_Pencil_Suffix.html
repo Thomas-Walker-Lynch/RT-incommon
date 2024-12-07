@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <title>Pencil Attribute in Directory Structure</title>
+  <style>
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', Arial, sans-serif;
+      background-color: hsl(0, 0%, 0%);
+      color: hsl(42, 100%, 80%);
+      padding: 2rem;
+      margin: 0;
+    }
+
+    .page {
+      padding: 1.25rem;
+      margin: 1.25rem auto;
+      max-width: 46.875rem;
+      background-color: hsl(0, 0%, 0%);
+      box-shadow: 0 0 0.625rem hsl(42, 100%, 50%);
+    }
+
+    ul, li {
+      font-size: 1rem;
+      list-style-type: none;
+    }
+
+    li::before {
+      content: "📁 ";
+      margin-right: 0.3125rem;
+    }
+
+    li {
+      margin-bottom: 0.3125rem;
+    }
+
+    .description {
+      margin-left: 0.625rem;
+      color: hsl(42, 100%, 75%);
+    }
+
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: hsl(0, 0%, 25%);
+      color: hsl(42, 100%, 90%);
+      padding: 0.125rem 0.25rem;
+      border-radius: 0.1875rem;
+      font-size: 90%;
+    }
+
+    h1 {
+      text-align: center;
+      color: hsl(42, 100%, 84%);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    h2 {
+      color: hsl(42, 100%, 84%);
+      text-transform: uppercase;
+      margin-top: 2.5rem;
+    }
+
+    p {
+      color: hsl(42, 100%, 90%);
+      margin-bottom: 1.25rem;
+      text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+<h1>About The Pencil Suffix</h1>
+
+<p>The 🖉 (pencil) symbol suffix indicates directories or files containing authored content—material that has been uniquely created, whether by human or AI, and cannot be regenerated or replaced by running project build scripts.
+Such files are called <em>authored files</em>.
+</p>
+
+<h3>How to Use the Pencil Suffix</h3>
+
+<ul>
+  <li>
+    <strong>Marking Files or Directory Contents as Authored:</strong> The pencil
+    suffix is a Unicode character, 🖉, that is placed as the last character of
+    a filename or directory name. It signifies that the file or directory
+    contents are uniquely authored and should not be deleted or rebuilt by
+    automated processes.
+  </li>
+
+  <li>
+    <strong>Using Directories with Pencil Suffix:</strong> The recommended way to mark files as authored is to place them in a directory whose name ends with a pencil suffix. This approach simplifies management and avoids requiring individual users to append the suffix to each file. Any file or subdirectory within a directory marked with a pencil suffix inherits the protection intent.
+  </li>
+  <li>
+    <strong>Difference Between File and Directory Suffix:</strong>
+    <ul>
+      <li><em>File Name Last Character as Pencil:</em> This directly marks the file itself as authored and protected.</li>
+      <li><em>Directory with Pencil Suffix:</em> This approach protects all contents within the directory sub-tree.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Nuances with Links</h3>
+
+<ul>
+  <li>
+    <strong>Symbolic Links:</strong> The pencil suffix applies to the target file or directory, not the symbolic link itself. A symbolic link pointing to a 🖉-marked file does not inherit the suffix. While the link allows access to the authored content, it exists as a separate entity that can be created or deleted independently.
+  </li>
+  <li>
+    <strong>Hard Links:</strong> Hard links are not uniquely identified and share the same name and inode. Thus, all hard links to a 🖉-marked file system object should have the pencil suffix on its name.
+  </li>
+</ul>
+
+<h3><code>rm_na</code>: Command to Prevent Deletion of Authored Content</h3>
+<ul>
+  <li>
+    <strong>The <code>rm_na</code> command is a modified version of the standard <code>rm</code> command that refuses to delete authored files.
+      This is true whether the file is marked as authored with a pencil
+      suffix or is found in a directory tree marked as such.
+  </li>
+  <li>
+    Use <code>rm_na</code> in place of <code>rm</code>  in scripts that clean, build, or otherwise manipulate project files.
+  </li>
+  <li>
+    While <code>rm_na</code> offers a safeguard, the pencil suffix itself does not enforce permissions. Users can still manually delete 🖉-marked files using <code>rm</code>, and roqque builds can overwrite them. Therefore, users should remain cautious.
+  </li>
+</ul>
+
+<h3>The Pencil Suffix and Editing: A Subtle but Important Distinction</h3>
+
+<p>The pencil suffix is often intuitively associated with "editability" because of the pencil’s traditional connotation with writing or modification. However, while related, the pencil suffix has a more nuanced and specific role in the context of our projects.</p>
+
+<p>The pencil suffix indicates that a file or directory is authored content, created by a person (human or AI) and intended to be retained as part of the project. It signals that the file should not be deleted by build scripts, clean scripts, or accidental invocations of rm commands. In this way, the pencil suffix protects the content from being overwritten or discarded during routine project workflows.</p>
+
+<p>The pencil suffix does not inherently restrict or permit editing. A file with the suffix can still be edited, just like any other file, as long as the operating system permissions allow it. Conversely, a file without the pencil suffix can also be edited, but its contents may be at risk of being overwritten or lost during builds or cleans.</p>
+
+<p>For teams, the pencil suffix serves as a communication tool. It helps team members recognize files that are authored and can not be replaced by auto generation."</p>
+
+<p>In the future, the pencil suffix could potentially evolve into a broader indicator encompassing editability or additional permissions. For now, its purpose remains focused on deletion protection and signaling authored content.</p>
+
+<h3>Goals</h3>
+
+<ul>
+  <li>
+    <strong>Visual Clarity:</strong> The pencil suffix provides an immediately recognizable visual cue, assisting in the organization and protection of authored content.
+  </li>
+  <li>
+    <strong>Team Collaboration:</strong> The pencil suffix is a communication device that expresses to other team members that a file is intended to be respected as authored contents.
+  </li>
+</ul>
+
+</body>
+</html>
