@@ -1,0 +1,14 @@
+
+2024-12-08T04:15:24Z
+
+  rename to project-share, move subu related tools to the subu project.
+
+  2024-12-08T04:21:20Z project renaming done, though used RT-project-share, as project-share suggests sharing with projects that are not following the RT-skeleton.
+
+
+2024-12-08T04:21:35Z
+  yeah we sill need an official RT-skeleton project.  This should wait for Ariadne to
+  be available.
+
+
+  
