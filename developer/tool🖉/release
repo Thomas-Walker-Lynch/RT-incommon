@@ -53,11 +53,14 @@ script_afp=$(realpath "${BASH_SOURCE[0]}")
 
   dev_dp="$REPO_HOME/developer"
 
-  # punt the release ...
-  ln -sf "$dev_dp"/amd64 "$release_dp"
-  ln -sf "$dev_dp"/bash🖉 "$release_dp/bash"
-  ln -sf "$dev_dp"/emacs🖉 "$release_dp/emacs"
-  ln -sf "$dev_dp"/make🖉 "$release_dp/make"
-
+  # for now we punt the release
+  pushd ../release >& /dev/null
+  set -x
+  ln -snf ../developer/amd64 amd64
+  ln -snf ../developer/bash🖉 bash
+  ln -snf ../developer/emacs🖉 emacs
+  ln -snf ../developer/make🖉 make
+  set +x
+  popd >& /dev/null
 
 echo "$(script_fp) done."
